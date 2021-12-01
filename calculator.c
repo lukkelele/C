@@ -1,48 +1,110 @@
 #include <stdio.h>
+#include <math.h>
+#include <string.h>
 
-#define BUF_SIZE 100
 
-char str[BUF_SIZE];
-
-void getStringInput();
+double a, b, sum;
+int choice;
+/* Declaration of functions */ 
+void menu();
+void submenu(int c);
+double add(double a, double b);
+double subtract(double a, double b);
+double divide(double a, double b);
+double mul(double a, double b);
+double powerOf(double a, double b);
 
 int main()
 {
 	printf("\n(C)alculator\n");
-
-	printf("String == %s", str);
-
+	menu();
+	submenu(choice);
 	return 0;
 }
 
+void menu()
+{
+	printf("Commands:\n1. (add)\n2. (sub)\n3. (mul)\n4. (div)\n5. (pow)\nenter: ");
+	scanf("%d", &choice);
+	
+}
+
+void submenu(int c) 
+{
+	switch (c) {
+		case 1:
+			printf("a = ");
+			scanf(" %lf", &a); 
+			printf("b = ");
+			scanf(" %lf", &b); 
+			sum = add(a, b);
+			printf("%lf + %lf = %lf\n", a, b, sum);
+			break;
+		case 2:
+			printf("a = ");		
+			scanf(" %lf", &a);
+			printf("b = ");
+			scanf(" %lf", &b); 
+			sum = subtract(a, b);	
+			printf("%lf - %lf = %lf\n", a, b, sum);
+			break;
+		case 3:
+			printf("a = ");
+			a = scanf(" %lf", &a); 
+			printf("b = ");
+			b = scanf(" %lf", &b);
+			sum = mul(a, b);
+			printf("%f + %f = %f\n", a, b, sum);
+			break;
+		case 4:
+			scanf(" %lf", &a); 
+			scanf(" %lf", &b);
+			sum = divide(a, b);
+			printf("%f / %f = %f\n", a, b, sum);
+			break;
+		case 5:
+			scanf(" %lf", &a); 
+			scanf(" %lf", &b);
+			sum = powerOf(a, b);
+			printf("%f^(%f) = %f\n", a, b, sum);
+			break;
+			
+			break;
+		default:
+			printf("\nERROR!\nMake sure to enter the menu alternative correctly.\n");
+			break;
+
+	}
+}
 
 
-double divide(int number, int divider)
+double divide(double number, double divider)
 {
 	int integer_division = number/divider;
-	float remainder = number%divider;
+	double remainder = fmod(number, divider);
 	return (integer_division+remainder);
 }
 
-double multiply(int multiplicand, int factor)
+double mul(double multiplicand, double factor)
 {
 	return (multiplicand*factor);
 }
 
-double powerOf(int base, int power)
+double powerOf(double base, double power)
 {
-	for (int k = 0 ; k <= power ; k++) {
-		base = base*k;
+	double result = 1;
+	for (int k = 1 ; k <= power ; k++) {
+		result = base * result;
 	}
-	return base;
+	return result;
 }
 
-double subtract(int a, int b)
+double subtract(double a, double b)
 {
 	return (a-b);
 }
 
-double add(int a, int b)
+double add(double a, double b)
 {
 	return (a+b);
 }
