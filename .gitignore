@@ -1,5 +1,4 @@
 # Object files
 **/*
-./os_development/*
 .directory
-!*.c
+!**/*.c
